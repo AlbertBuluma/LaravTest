@@ -19,4 +19,4 @@ deploy:
     secure: "63d7ab61-e329-4566-9557-6593f1bc1e93"
   app: "albertlaravel"
   on:
-    all_branches: true
+    all_branches: develop
