@@ -5,7 +5,7 @@ php:
 
 before_script:
   - cp .env.travis .env
-  - mysql -e 'create database homestead_test;'
+  - mysql -e 'create database testing_db;'
   - composer self-update
   - composer install --no-interaction
   - php artisan key:generate
@@ -13,10 +13,10 @@ before_script:
 script:
   - vendor/bin/phpunit
 
-
-#deploy:
-#  provider: pages
-#  skip-cleanup: true
-#  github_token: $GITHUB_TOKEN
-#  on:
-#    branch: master
+deploy:
+  provider: heroku
+  api_key:
+    secure: "7eafc834-38c5-4e43-bc66-57def5daaebc"
+  app: "albertlaravel"
+  on:
+    all_branches: true
