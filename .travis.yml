@@ -16,7 +16,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: "7eafc834-38c5-4e43-bc66-57def5daaebc"
+    secure: "63d7ab61-e329-4566-9557-6593f1bc1e93"
   app: "albertlaravel"
   on:
     all_branches: true
