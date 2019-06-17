@@ -3,23 +3,12 @@
 namespace Tests\Feature;
 
 use App\Task;
-use http\Env\Response;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-//use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-//use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Faker\Generator as Faker;
-
 
 class TaskTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-//    use DatabaseMigrations;
-//    use RefreshDatabase;
+    use DatabaseMigrations;
 
     /** @test */
     public function it_will_show_all_tasks()
@@ -30,19 +19,15 @@ class TaskTest extends TestCase
 
         $response->assertStatus(200);
 
-        //$response->assertJson($tasks->toArray());
-
-
+        $response->assertJson($tasks->toArray());
     }
 
     /** @test */
-
     public function it_will_create_tasks()
     {
         $response = $this->post(route('tasks.store'), [
             'firstname'       => 'This is a firstname',
             'lastname' => 'This is a lastname'
-
         ]);
 
         $response->assertStatus(200);
@@ -64,7 +49,6 @@ class TaskTest extends TestCase
     }
 
     /** @test */
-
     public function it_will_show_a_task()
     {
         $this->post(route('tasks.store'), [
@@ -82,7 +66,6 @@ class TaskTest extends TestCase
     }
 
     /** @test */
-
     public function it_will_update_a_task()
     {
         $this->post(route('tasks.store'), [
@@ -93,7 +76,7 @@ class TaskTest extends TestCase
         $task = Task::all()->first();
 
         $response = $this->put(route('tasks.update', $task->id), [
-            'firstname' => 'This is the updated title'
+            'firstname' => 'This is the updated firstname'
         ]);
 
         $response->assertStatus(200);
@@ -103,18 +86,16 @@ class TaskTest extends TestCase
         $this->assertEquals($task->firstname, 'This is the updated firstname');
 
         $response->assertJsonStructure([
-            'message',
-            'task' => [
-                'firstname',
-                'lastname',
-                'updated_at',
-                'created_at',
-                'id'
-            ]
-        ]);
+           'message',
+           'task' => [
+               'firstname',
+               'lastname',
+               'updated_at',
+               'created_at',
+               'id'
+           ]
+       ]);
     }
-
-    /** @test */
 
     /** @test */
     public function it_will_delete_a_task()
@@ -135,12 +116,5 @@ class TaskTest extends TestCase
         $response->assertJsonStructure([
             'message'
         ]);
-    }
-
-    public function testExample()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
     }
 }
