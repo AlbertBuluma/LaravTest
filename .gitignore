@@ -10,7 +10,11 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+<<<<<<< HEAD
 .idea/
 /.idea
 bootstrap/compiled.php
+=======
+/.idea
+>>>>>>> b3f948395311771b1d8a2f6670f3105ccb2829e3
 /.vagrant
